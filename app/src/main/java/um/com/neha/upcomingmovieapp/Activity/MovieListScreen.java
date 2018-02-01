@@ -47,7 +47,7 @@ public class MovieListScreen extends AppCompatActivity {
 
     public void initView(){
 
-        simpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+        simpleProgressBar = findViewById(R.id.simpleProgressBar);
         movies_recyclerView = findViewById(R.id.movies_recyclerView);
         movies_recyclerView.setLayoutManager(new LinearLayoutManager(this));
         info_imageview = findViewById(R.id.info_imageview);
