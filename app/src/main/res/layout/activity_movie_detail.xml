@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Upcoming Movies"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_18sdp"
                 />
 
@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_30sdp"
             android:layout_alignParentBottom="true"
-            android:background="#80000000"/>
+            android:background="@color/transparent_black"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             />
 
         <TextView
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/_14sdp"
             android:ellipsize="end"
-            android:textColor="#818181"
+            android:textColor="@color/grey"
             android:layout_marginTop="@dimen/_5sdp"
             android:maxLines="5"/>
 

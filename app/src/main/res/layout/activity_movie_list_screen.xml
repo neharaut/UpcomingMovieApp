@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#e4e5e5"
+    android:background="@color/grey_background"
     tools:context="um.com.neha.upcomingmovieapp.Activity.MovieListScreen">
 
     <android.support.v7.widget.Toolbar
@@ -23,8 +23,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upcoming Movies"
-                android:textColor="#ffffff"
+                android:text="@string/movie_list_title"
+                android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:layout_centerInParent="true"
                 android:textSize="@dimen/_18sdp"
