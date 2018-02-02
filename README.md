@@ -5,7 +5,7 @@ Used Retrofit for restAPI calls with RecyclerView. Used ViewPager for image slid
 
 1. Upcoming Movie Screen:
 
-![alt tag](https://github.com/neharaut/UpcomingMovieApp/blob/master/app/src/main/res/raw/information_screen.png)
+<img src="https://github.com/neharaut/UpcomingMovieApp/blob/master/app/src/main/res/raw/movie_list_screen.png" width=240 height=400/>
 
 Displays list of Movies with following information
 - Poster
@@ -14,6 +14,9 @@ Displays list of Movies with following information
 - Movie Category
 
 2. Movie Detail Screen:
+
+<img src="https://github.com/neharaut/UpcomingMovieApp/blob/master/app/src/main/res/raw/movie_detail_screen.png" width=240 height=400/>
+
 Displays movie detial with following information:
 - Movie Title
 - Movie Slider Images
@@ -21,4 +24,7 @@ Displays movie detial with following information:
 - Movie Popularity in 5 star ratings
 
 3. Information Screen:
+
+<img src="https://github.com/neharaut/UpcomingMovieApp/blob/master/app/src/main/res/raw/information_screen.png" width=240 height=400/>
+
 Displays developer's name
