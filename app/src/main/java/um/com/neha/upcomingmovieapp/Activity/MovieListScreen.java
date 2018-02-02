@@ -40,9 +40,9 @@ public class MovieListScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list_screen);
-        initView();
-        getData();
-        listener();
+        initView(); // initializing views
+        getData(); // get response data
+        listener(); // clickListeners
     }
 
     public void initView(){
@@ -55,6 +55,7 @@ public class MovieListScreen extends AppCompatActivity {
     }
 
     public void listener(){
+        // click listener for Information screen
         info_imageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,17 +67,19 @@ public class MovieListScreen extends AppCompatActivity {
 
     public void getData(){
 
-        Call<Movie> movie_list= RestAPI.getMovieService().getMoviesList();
-        Call<Configuration> configurationCall=RestAPI.getMovieService().getConfigurationImage();
-        simpleProgressBar.setVisibility(View.VISIBLE);
+        Call<Movie> movie_list= RestAPI.getMovieService().getMoviesList(); // API call for getting upcoming movie list
+        Call<Configuration> configurationCall=RestAPI.getMovieService().getConfigurationImage(); // API call for getting base_urls and size of images
+
+        simpleProgressBar.setVisibility(View.VISIBLE); // progressbar for loading response
+
         configurationCall.enqueue(new Callback<Configuration>() {
             @Override
             public void onResponse(Call<Configuration> call, Response<Configuration> response) {
                 Configuration configuration=response.body();
                 Images images = configuration.getImages();
                 List<String> poster_size=images.getPosterSizes();
-                base_url=images.getBaseUrl()+poster_size.get(1);
-                back_drop_url=images.getBaseUrl()+images.getBackdropSizes().get(1);
+                base_url=images.getBaseUrl()+poster_size.get(1); //base url for poster
+                back_drop_url=images.getBaseUrl()+images.getBackdropSizes().get(1); // base url for backdrops
             }
 
             @Override
@@ -91,9 +94,13 @@ public class MovieListScreen extends AppCompatActivity {
                 Log.e("response",""+response.body());
                 resultList=response.body().getResults();
                 simpleProgressBar.setVisibility(View.INVISIBLE);
+                //setAdapter to recycler view
                 movieAdapter=new MovieAdapter(MovieListScreen.this,resultList,base_url);
                 movies_recyclerView.setAdapter(movieAdapter);
-                Toast.makeText(MovieListScreen.this,"Success",Toast.LENGTH_LONG).show();
+
+                //Toast.makeText(MovieListScreen.this,"Success",Toast.LENGTH_LONG).show();
+
+                // OnItemClickListener for movie list redirecting to MovieDetailActivity
                 movieAdapter.SetOnItemClickListener(new MovieAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {

@@ -44,11 +44,12 @@ public class MovieDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
-        getBundle();
-        initView();
-        getData();
+        getBundle(); //get the information from previous activity from intent
+        initView(); // initializing view
+        getData(); // get the response data
     }
 
+    // retrieve data coming from intent
     public void getBundle(){
         Intent intent = getIntent();
         id = intent.getIntExtra("id",0);
@@ -58,10 +59,13 @@ public class MovieDetailActivity extends AppCompatActivity {
         base_url = intent.getStringExtra("base_url");
     }
 
+    //initializing views
     public void initView(){
         screen_title = findViewById(R.id.screen_title);
         detail_movie_title = findViewById(R.id.detail_movie_title);
         movie_overview = findViewById(R.id.movie_overview);
+
+        //Overview textView justification only for oreo
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             movie_overview.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
         }
@@ -69,9 +73,12 @@ public class MovieDetailActivity extends AppCompatActivity {
         mPager = (ViewPager) findViewById(R.id.pager);
         indicator = (CircleIndicator) findViewById(R.id.indicator);
         ratingBar = findViewById(R.id.ratingBar);
-        ratingBar.setRating((float)(popularity*5)/500);
+
+        ratingBar.setRating((float)(popularity*5)/500); //converting popularity into 5 star rating
 
         ImageView back_button = findViewById(R.id.back_button);
+
+        //back navigation button
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,12 +93,14 @@ public class MovieDetailActivity extends AppCompatActivity {
         detail_movie_title.setText(title);
         movie_overview.setText(overview);
 
-        Call<SliderImage> slideImage= RestAPI.getMovieService().getSlideImage(id);
+        Call<SliderImage> slideImage= RestAPI.getMovieService().getSlideImage(id); // API call for getting slider images
         slideImage.enqueue(new Callback<SliderImage>() {
             @Override
             public void onResponse(Call<SliderImage> call, Response<SliderImage> response) {
                 backdropList = response.body().getBackdrops();
                 final List<String> sliderImage=new ArrayList<>();
+
+                // checking condition to show atleast 5 images on slider. If available images are less than 5 thn show them as it is
                 if (backdropList.size()>5) {
                     for (int i = 0; i < 5; i++) {
                         sliderImage.add(base_url + backdropList.get(i).getFilePath());

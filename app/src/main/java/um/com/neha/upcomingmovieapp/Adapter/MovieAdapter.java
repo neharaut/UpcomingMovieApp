@@ -50,6 +50,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         holder.movie_title_textview.setText(result.getTitle());
         holder.release_date_textView.setText(result.getReleaseDate());
         boolean movie_category = result.getAdult();
+        // checking condition for movie is adult or not
         if(movie_category){
             holder.category_textView.setText("(A)");
         }else{
@@ -89,6 +90,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         }
     }
 
+    // ClickListener for RecyclerView
     public interface OnItemClickListener {
         public void onItemClick(View view , int position);
     }
